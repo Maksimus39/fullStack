@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fullStack</title>
+    <style>
+        body {
+            background-color: rgba(144, 215, 236, 0.6);
+            color: #eaaa0b;
+        }
+    </style>
+</head>
+<body>
+<h1>Hello Samurai</h1>
+<div id="root"></div>
+
+
+<script>
+    const buttonElement = document.createElement('button')
+    buttonElement.append('Load data')
+    buttonElement.addEventListener('click', async () => {
+        const response = await fetch("http://localhost:3000/data")
+        const resultText = await response.text()
+        rootElement.append(resultText)
+    })
+    const rootElement = document.getElementById('root')
+    rootElement.appendChild(buttonElement)
+</script>
+</body>
+</html>
