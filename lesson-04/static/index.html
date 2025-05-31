@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fullStack</title>
+    <style>
+        body {
+            background-color: rgba(144, 215, 236, 0.6);
+            color: #eaaa0b;
+        }
+    </style>
+</head>
+<body>
+<h1>Hello Samurai</h1>
+<div id="root">
+</div>
+
+
+<script>
+    const rootElement = document.getElementById('root')
+
+    const driversRootElement = document.createElement('ul')
+
+    rootElement.append(driversRootElement)
+
+    const buttonElement = document.createElement('button')
+    buttonElement.append('Load data')
+    buttonElement.addEventListener('click', async () => {
+        const response = await fetch("http://localhost:3001")
+        const drivers = await response.json()
+
+        drivers.forEach(driver => {
+            const liElement = document.createElement('li')
+            liElement.append(`${driver.id}: ${driver.driver}, ${driver.carModel}`)
+            driversRootElement.append(liElement)
+        })
+    })
+    rootElement.appendChild(buttonElement)
+</script>
+</body>
+</html>
